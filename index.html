@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lieferandoo</title>
+    <link rel="shortcut icon" href="img/logo/favicon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="html-templates.js"></script>
+    <script src="arrays.js"></script>
+  </head>
+
+  <body onload="renderMenus(), renderBasket(), addSums()">
+    <header>
+      <img src="img/logo/logo_final.png" alt="" />
+      <p class="speisekarte">Speisekarte</p>
+      <div class="header-right">
+        <img class="flag" src="img/icons/ger-flag.png" alt="" />
+        <img src="img/icons/bars.svg" alt="" />
+      </div>
+    </header>
+    <main>
+      <div class="main-left-container">
+        <img class="header-img" src="img/header-img.jpg" alt="" />
+
+        <div class="restaurant-container">
+          <div class="restaurant-profile">
+            <div class="restaurant-profile-left">
+              <div class="logo-restaurant">
+                <img src="img/logo/restaurant-logo3.png" alt="" />
+              </div>
+              <h1>Pizza Axellent</h1>
+              <div class="rating">
+                <img src="img/icons/star.svg" alt="" />
+                <p class="underline"><b>4.9</b> (200+)</p>
+              </div>
+              <div class="cost-infos">
+                <img src="img/icons/bag.svg" alt="" />
+                <p class="font-thin">Min. 14,90 € ·</p>
+                <img src="img/icons/bike-green.svg" alt="" />
+                <p class="font-thin font-green">1,99 €</p>
+              </div>
+            </div>
+            <div class="restaurant-profile-right">
+              <div class="icon-border-grey">
+                <img src="img/icons/info.svg" alt="" />
+              </div>
+              <div onclick="like()" class="icon-border-grey">
+                <img id="heart" src="img/icons/heart.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category-container">
+          <div class="categories">
+            <div
+              onclick="openSearch()"
+              id="search"
+              class="icon-border-grey-small"
+            >
+              <img src="img/icons/glasses.svg" alt="" />
+            </div>
+            <input
+              class="d-none"
+              placeholder="Suchen..."
+              onchange="filterMenus()"
+              type="text"
+              id="input"
+            />
+
+            <a href="#special-img">Axel's Specials</a>
+            <a href="#classic-img">Classic Pizza</a>
+            <a href="#salads-img">Salate</a>
+            <a href="#drinks-img">Getränke</a>
+          </div>
+        </div>
+
+        <div id="dishes-container" class="dishes-container">
+          <div id="search-container"></div>
+          <img
+            id="special-img"
+            src="img/special.jpg"
+            alt=""
+            class="dishes-main-img"
+          />
+          <div class="category-info">
+            <h2>Axel's Specials</h2>
+            <p class="font-thin">
+              Alle Pizzen werden mit Tomatensauce und Mozzarella zubereitet.
+            </p>
+          </div>
+          <div class="content-boxes" id="content-specials"></div>
+
+          <img
+            id="classic-img"
+            src="img/classic.jpg"
+            alt=""
+            class="dishes-main-img"
+          />
+          <div class="category-info">
+            <h2>Classic Pizza</h2>
+            <p class="font-thin">
+              Alle Pizzen werden mit Tomatensauce und Mozzarella zubereitet.
+            </p>
+          </div>
+          <div class="content-boxes" id="content-classic"></div>
+
+          <img
+            id="salads-img"
+            src="img/salat.jpg"
+            alt=""
+            class="dishes-main-img"
+          />
+          <div class="category-info">
+            <h2>Salate</h2>
+            <p class="font-thin">
+              Alle Salate werden mit Eisbergsalat und einem Dressing nach Wahl
+              zubereitet.
+            </p>
+          </div>
+          <div class="content-boxes" id="content-salads"></div>
+
+          <img
+            id="drinks-img"
+            src="img/drinks.jpg"
+            alt=""
+            class="dishes-main-img"
+          />
+          <div class="category-info">
+            <h2>Getränke</h2>
+            <p class="font-thin"></p>
+          </div>
+          <div class="content-boxes" id="content-drinks"></div>
+        </div>
+      </div>
+      <div id="basket" class="basket-container">
+        <h2>Warenkorb</h2>
+        <div class="switch">
+          <div
+            id="switch1"
+            class="switch-element switch-background"
+            onclick="delivered()"
+          >
+            <img src="img/icons/bike-orange.svg" alt="" />
+            <div class="switch-infos">
+              <p class="font-thin">Lieferung</p>
+              <p class="font-thin">ab 11:45</p>
+            </div>
+          </div>
+          <div id="switch2" class="switch-element" onclick="takeaway()">
+            <img src="img/icons/bag.svg" alt="" />
+            <div class="switch-infos">
+              <p class="font-thin">Abholung</p>
+              <p class="font-thin">ab 11:15</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="line"></div>
+        <div id="content-basket"></div>
+        <div class="line"></div>
+        <div id="sums"></div>
+        <div class="line"></div>
+        <div class="fourty"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <a class="font-thin" href="#">Ein Restaurant empfehlen</a>
+        <a class="font-thin" href="#">Ein Restaurant anmelden</a>
+        <a class="font-thin" href="#">Jobs</a>
+        <a class="font-thin" href="#">AGB</a>
+        <a class="font-thin" href="#">Datenschutzerklärung</a>
+        <a class="font-thin" href="#">Impressum</a>
+        <a class="font-thin" href="#">Verwendung von Cookies</a>
+        <a class="font-thin" href="#">Bug Bounty</a>
+        <a class="font-thin" href="#">Ethik-Hotline</a>
+      </div>
+      <div class="copyright">
+        <a class="font-thin" href="#">© 2024 Lieferandoo.de</a>
+      </div>
+    </footer>
+
+    <!-- BASKET BUTTON UNTEN RESPONSIVE -->
+    <div id="basket-responsive" class="basket-responsive"></div>
+
+    <!-- FULL BASKET RESPONSIVE -->
+    <div id="full-basket" class="full-basket d-none">
+    
+      <div class="basket-item">
+        <h2>Warenkorb</h2>
+        <img
+          onclick="hideFullBasket()"
+          class="img-30"
+          src="img/icons/xmark-clear.svg"
+          alt=""
+        />
+      </div>
+      <div class="switch">
+        <div
+          id="switch1Res"
+          class="switch-element switch-background"
+          onclick="delivered()"
+        >
+          <img src="img/icons/bike-orange.svg" alt="" />
+          <div class="switch-infos">
+            <p class="font-thin">Lieferung</p>
+            <p class="font-thin">ab 11:45</p>
+          </div>
+        </div>
+        <div id="switch2Res" class="switch-element" onclick="takeaway()">
+          <img src="img/icons/bag.svg" alt="" />
+          <div class="switch-infos">
+            <p class="font-thin">Abholung</p>
+            <p class="font-thin">ab 11:15</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+      <div id="content-res-basket"></div>
+      <div class="line"></div>
+      <div id="sumsRes"></div>
+    </div>
+
+    <!-- Layer Order -->
+    <div id="order-layer" class="layer d-none">
+      <div class="innerLayer innerLayer-center">
+        <div class="confirm">
+          <h1>Vielen Dank für Ihre Bestellung!</h1>
+          <p>
+            <br />
+            Sie erhalten eine Mail mit der Zusammenfassung und der
+            voraussichtlichen Lieferzeit.
+          </p>
+        </div>
+
+        <div onclick="returnToStart()" class="order-button">
+          Weitere Bestellung >
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>
